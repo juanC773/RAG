@@ -1,0 +1,9 @@
+.env
+# Proyecto de referencia (otro repo); no versionar aquí
+VectoAgent/
+chroma_db_ia2/
+chroma_db_openai/
+chroma_db_bolivar/
+.venv/
+__pycache__/
+.ipynb_checkpoints/
