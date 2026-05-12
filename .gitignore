@@ -1,5 +1,4 @@
 .env
-# Proyecto de referencia (otro repo); no versionar aquí
 VectoAgent/
 chroma_db_ia2/
 chroma_db_openai/
