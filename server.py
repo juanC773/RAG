@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 _HERE = Path(__file__).parent.resolve()
 load_dotenv(_HERE / ".env", override=False)
 
-# Documentos de Bolívar (movidos desde celda 3 del notebook)
+# Documentos de Bolívar 
 DOCUMENTS = [
     "Simón Bolívar nació el 24 de julio de 1783 en Caracas, entonces parte del Virreinato de Nueva Granada.",
     "Es conocido como El Libertador por su papel militar y político en la independencia de Venezuela, Colombia, Ecuador, Perú y Bolivia frente al imperio español.",
@@ -22,13 +22,13 @@ DOCUMENTS = [
 ]
 
 CHROMA_DIR = str(_HERE / "chroma_db_bolivar")
-EMBED_MODEL = "text-embedding-3-small"
+EMBED_MODEL = "all-MiniLM-L6-v2"
 
 from langchain_chroma import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_core.documents import Document
-from langchain_openai import OpenAIEmbeddings
 
-embedding_fn = OpenAIEmbeddings(model=EMBED_MODEL)
+embedding_fn = HuggingFaceEmbeddings(model_name=EMBED_MODEL)
 _persist = Path(CHROMA_DIR)
 
 if _persist.exists() and any(_persist.iterdir()):
