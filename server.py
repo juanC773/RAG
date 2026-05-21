@@ -25,7 +25,7 @@ CHROMA_DIR = str(_HERE / "chroma_db_bolivar")
 EMBED_MODEL = "all-MiniLM-L6-v2"
 
 from langchain_chroma import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
 
 embedding_fn = HuggingFaceEmbeddings(model_name=EMBED_MODEL)

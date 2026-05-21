@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_anthropic import ChatAnthropic
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langgraph.prebuilt import create_react_agent
 from ragas import evaluate
 from ragas.embeddings import LangchainEmbeddingsWrapper
@@ -73,8 +73,13 @@ async def get_contexts_mcp(query: str) -> list:
 async def responder(message: str, history: list):
     if not message.strip():
         return "", history
+    if _agent is None:
+        history.append({"role": "user", "content": message})
+        history.append({"role": "assistant", "content": "El sistema aún está iniciando, espera unos segundos e intenta de nuevo."})
+        return "", history
     respuesta = await ejecutar_agente_mcp(message)
-    history.append((message, respuesta))
+    history.append({"role": "user", "content": message})
+    history.append({"role": "assistant", "content": respuesta})
     return "", history
 
 
